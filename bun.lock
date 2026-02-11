@@ -1,0 +1,19 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "predictor-ball",
+      "dependencies": {
+        "openspec": "^0.0.0",
+      },
+      "devDependencies": {
+        "typescript": "^5.7.0",
+      },
+    },
+  },
+  "packages": {
+    "openspec": ["openspec@0.0.0", "", {}, "sha512-7+lOPJO4eDtQlC/wfpRuZ+c75hiXIfb+PDm7nmWkj6/ZKf2Utx6ST1Sg35Vjvrz6dGGUQEW9fuVe+thKvVstkA=="],
+
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+  }
+}

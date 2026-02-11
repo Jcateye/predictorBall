@@ -1,0 +1,26 @@
+{
+  "name": "predictor-ball",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PredictorBall - Full-stack TypeScript monorepo",
+  "scripts": {
+    "dev": "pnpm --parallel -r dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@nestjs/core", "sharp"]
+  },
+  "dependencies": {
+    "openspec": "^0.0.0"
+  }
+}
