@@ -1,244 +1,92 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --bg-primary: #0d0d0d;
   --bg-card: #1a1a1a;
   --bg-muted: #2a2a2a;
-  --text-primary: #f5f4f2;
-  --text-secondary: #9a9a9a;
   --accent-gold: #c9a962;
   --accent-blue: #42a5f5;
   --accent-green: #4caf50;
   --accent-red: #e53935;
-  --border-subtle: #333333;
+  --live-red: #ff3b30;
+  --text-primary: #f5f4f2;
+  --text-secondary: #8a8a8a;
+  --text-tertiary: #7a7a7a;
+  --text-muted: #6a6a6a;
+  --text-disabled: #5a5a5a;
+  --border-subtle: #2a2a2a;
+  --border-divider: #5a5a5a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 body {
   font-family: var(--font-body), serif;
-  background:
-    radial-gradient(circle at 20% 0%, #222 0%, transparent 40%),
-    radial-gradient(circle at 80% 10%, #1b1b1b 0%, transparent 50%),
-    var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  line-height: 1.45;
 }
 
-.top-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--border-subtle);
-  background: rgba(13, 13, 13, 0.9);
-  backdrop-filter: blur(8px);
-}
-
-.top-nav h1 {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 0.08em;
-  color: var(--accent-gold);
-}
-
-.top-nav nav {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-.top-nav a {
-  color: var(--text-primary);
-  text-decoration: none;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid transparent;
-  font-size: 0.95rem;
-}
-
-.top-nav a:hover {
-  border-color: var(--accent-gold);
-}
-
-.page-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.stack {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.panel {
-  background: linear-gradient(180deg, #1c1c1c 0%, #161616 100%);
-  border: 1px solid var(--border-subtle);
-  padding: 0.9rem;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.muted {
-  color: var(--text-secondary);
-}
-
-.plain-list {
-  list-style: none;
-  display: grid;
-  gap: 0.45rem;
-  margin-top: 0.6rem;
-}
-
-.btn {
-  background: var(--accent-gold);
-  color: #141414;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.btn:disabled {
-  cursor: wait;
-  opacity: 0.75;
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--accent-gold);
-  border: 1px solid var(--accent-gold);
-}
-
-.input {
-  border: 1px solid var(--border-subtle);
-  background: #101010;
-  color: var(--text-primary);
-  padding: 0.5rem;
-}
-
-.auth-panel {
-  margin-bottom: 1rem;
-  display: grid;
-  gap: 0.7rem;
-}
-
-.auth-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.author-badge {
-  margin-left: 0.5rem;
-  display: inline-block;
-  border: 1px solid var(--border-subtle);
-  padding: 0.1rem 0.35rem;
-  font-size: 0.75rem;
-}
-
-.author-platform,
-.author-expert {
-  border-color: var(--accent-gold);
-  color: var(--accent-gold);
-}
-
-.author-ai {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-}
-
-.author-user {
-  border-color: var(--text-secondary);
-  color: var(--text-secondary);
-}
-
-.match-card,
-.feed-card {
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.match-card:hover,
-.feed-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-gold);
-}
-
-.block-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.text-link {
-  color: var(--accent-gold);
-  text-decoration: underline;
-}
-
-.locked-mask {
-  border: 1px dashed var(--border-subtle);
-  padding: 0.75rem;
-}
-
-.payment-sheet {
-  display: grid;
-  gap: 0.6rem;
-}
-
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.7rem;
-}
-
-.filter-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.8rem;
-}
-
-.stat-card {
-  background: var(--bg-muted);
-  border: 1px solid var(--border-subtle);
-  padding: 0.7rem;
-  display: grid;
-  gap: 0.2rem;
-}
-
-.status-ok {
-  color: var(--accent-green);
-}
-
-.status-error {
-  color: var(--accent-red);
-}
-
-.page-title {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 2rem;
-  letter-spacing: 0.04em;
-}
-
-@media (max-width: 640px) {
-  .top-nav {
-    flex-direction: column;
-    align-items: flex-start;
+@layer components {
+  .mobile-shell {
+    @apply mx-auto min-h-screen w-full max-w-screenMobile bg-bg-primary text-text-primary;
   }
 
-  .top-nav nav {
-    width: 100%;
-    justify-content: space-between;
+  .screen-content {
+    @apply px-6 pb-28;
+  }
+
+  .status-bar {
+    @apply flex h-[54px] items-center justify-between px-6 text-[17px] font-semibold text-text-primary;
+    font-family: var(--font-system), sans-serif;
+  }
+
+  .screen-title {
+    @apply text-[48px] leading-[0.9] tracking-[-1px] text-text-primary;
+    font-family: var(--font-heading), sans-serif;
+  }
+
+  .nav-subtitle {
+    @apply text-[13px] italic text-text-secondary;
+    font-family: var(--font-body), serif;
+  }
+
+  .section-card {
+    @apply border border-border-subtle bg-bg-card;
+  }
+
+  .chip {
+    @apply border border-border-subtle bg-bg-card px-4 py-2 text-[12px] uppercase tracking-[1px] text-text-secondary;
+    font-family: var(--font-heading), sans-serif;
+  }
+
+  .chip-active {
+    @apply border-accent-gold bg-accent-gold text-bg-primary;
+  }
+
+  .divider {
+    @apply border-t border-border-divider;
+  }
+
+  .bottom-tab {
+    @apply fixed bottom-0 left-1/2 z-20 flex h-[84px] w-full max-w-screenMobile -translate-x-1/2 items-start justify-around border-t border-border-subtle bg-bg-primary px-0 pb-[calc(32px+env(safe-area-inset-bottom))] pt-3;
+  }
+
+  .bottom-tab-item {
+    @apply flex w-full flex-col items-center gap-1 text-[11px] tracking-[1px] text-text-muted;
+    font-family: var(--font-heading), sans-serif;
+  }
+
+  .bottom-tab-item-active {
+    @apply text-accent-gold;
   }
 }
