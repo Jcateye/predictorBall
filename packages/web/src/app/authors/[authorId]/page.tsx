@@ -6,15 +6,17 @@ import { AppIcon } from '@/components/common/AppIcon'
 import { Avatar } from '@/components/common/Avatar'
 import { authorDiscussionPlaceholder, authorProfiles, authorReportsById } from '@/mocks/authors'
 
+export function generateStaticParams() {
+  return Object.keys(authorProfiles).map((authorId) => ({ authorId }))
+}
+
 export default async function AuthorPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ authorId: string }>
-  searchParams: Promise<{ tab?: 'reports' | 'stats' | 'discussion' }>
 }) {
   const { authorId } = await params
-  const { tab = 'reports' } = await searchParams
+  const tab = 'reports' as 'reports' | 'stats' | 'discussion'
   const profile = authorProfiles[authorId] ?? authorProfiles['author-zhangwei']
   const reports = authorReportsById[authorId] ?? authorReportsById['author-zhangwei']
 

@@ -6,6 +6,10 @@ import { CtaButton } from '@/components/common/CtaButton'
 import { AppIcon } from '@/components/common/AppIcon'
 import { Avatar } from '@/components/common/Avatar'
 
+export function generateStaticParams() {
+  return Object.keys(reportDetailById).map((reportId) => ({ reportId }))
+}
+
 export default async function ReportPage({
   params,
 }: {

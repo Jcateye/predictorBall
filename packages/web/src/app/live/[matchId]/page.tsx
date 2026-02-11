@@ -3,6 +3,10 @@ import { liveDetailById } from '@/mocks/live'
 import { CtaButton } from '@/components/common/CtaButton'
 import { AppIcon } from '@/components/common/AppIcon'
 
+export function generateStaticParams() {
+  return Object.keys(liveDetailById).map((matchId) => ({ matchId }))
+}
+
 export default async function LiveDetailPage({
   params,
 }: {

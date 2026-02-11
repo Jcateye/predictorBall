@@ -133,4 +133,61 @@ export const reportDetailById: Readonly<Record<string, {
       { id: 'more-2', title: '德国 vs 日本', price: 'FREE' },
     ],
   },
+  'report-de-jp-ai': {
+    title: '德国 VS 日本',
+    subtitle: '世界杯 · C组 · 今天 21:00',
+    updateTag: 'AI 模型更新于 20:15 · 含阵容变量',
+    author: {
+      id: 'author-ai-core',
+      name: 'PredictorBall AI',
+      type: 'ai',
+      hitRate: '66% (18/27)',
+    },
+    updateLog: [
+      { time: '20:15', content: '模型已纳入最新首发与天气数据', latest: true },
+      { time: '19:50', content: '日本中路回防速度指标上调' },
+      { time: '18:30', content: '初始报告发布' },
+    ],
+    toc: [
+      { label: '一眼看懂理由（2条核心逻辑）', locked: false },
+      { label: '比赛结论 + 置信度', locked: false },
+      { label: '关键变量（阵容/节奏/反击效率）', locked: false },
+    ],
+    freeReasons: [
+      '德国控球率预计占优，但有效机会未必同步提升。',
+      '日本反击直塞成功率在近5场明显提高。',
+    ],
+    lockedPreview: ['本报告为免费样例，已解锁完整内容'],
+    unlockText: '免费查看完整报告',
+    moreFromAuthor: [
+      { id: 'report-fr-br-expert', title: '法国 vs 巴西', price: '¥9.9' },
+      { id: 'report-ar-nl-user', title: '阿根廷 vs 荷兰', price: 'FREE' },
+    ],
+  },
+  'report-ar-nl-user': {
+    title: '阿根廷 VS 荷兰',
+    subtitle: '世界杯 · 淘汰赛 · 后天 00:00',
+    updateTag: '网友观点更新于 17:20',
+    author: {
+      id: 'author-user-laowang',
+      name: '球迷老王',
+      type: 'user',
+      hitRate: '58% (7/12)',
+    },
+    updateLog: [
+      { time: '17:20', content: '补充了双方定位球对抗样本', latest: true },
+      { time: '16:05', content: '初始观点发布' },
+    ],
+    toc: [
+      { label: '一眼看懂理由（1条核心逻辑）', locked: false },
+      { label: '比赛结论 + 置信度', locked: false },
+    ],
+    freeReasons: ['阿根廷边路推进有优势，但荷兰高点争顶可能抵消该优势。'],
+    lockedPreview: ['本报告为网友免费分享，无付费区'],
+    unlockText: '免费查看完整报告',
+    moreFromAuthor: [
+      { id: 'report-de-jp-ai', title: '德国 vs 日本', price: 'FREE' },
+      { id: 'report-fr-br-expert', title: '法国 vs 巴西', price: '¥9.9' },
+    ],
+  },
 }

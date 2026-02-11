@@ -4,7 +4,8 @@ import type {
   LiveStatDto,
   MatchCard as MatchCardDto,
 } from '@predictor-ball/shared'
-import { publicApiClient } from '@/lib/api-client'
+import { notFound } from 'next/navigation'
+import { liveDetailById } from '@/mocks/live'
 import { MatchCard } from '@/components/MatchCard'
 import { FollowTeamButton } from '@/components/FollowTeamButton'
 import { FollowMatchButton } from '@/components/FollowMatchButton'
@@ -16,14 +17,78 @@ interface LiveDetailResponse {
   updatedAt: string
 }
 
+function toMatchCardDto(detail: (typeof liveDetailById)[string], matchId: string): MatchCardDto {
+  return {
+    id: matchId,
+    kickoffAt: new Date().toISOString(),
+    status: 'live',
+    stage: detail.match.stage,
+    homeTeam: {
+      id: `${matchId}-home`,
+      name: detail.match.home.name,
+      shortName: detail.match.home.name,
+    },
+    awayTeam: {
+      id: `${matchId}-away`,
+      name: detail.match.away.name,
+      shortName: detail.match.away.name,
+    },
+    homeScore: detail.match.home.score ?? 0,
+    awayScore: detail.match.away.score ?? 0,
+  }
+}
+
+function toLiveDetailResponse(detail: (typeof liveDetailById)[string], matchId: string): LiveDetailResponse {
+  const events: LiveEventDto[] = detail.events.map((event) => ({
+    id: event.id,
+    matchId,
+    minute: Number(event.minute) || 0,
+    type: 'goal',
+    team: event.team === 'neutral' ? 'home' : event.team,
+    player: event.player,
+    detail: event.detail,
+    createdAt: new Date().toISOString(),
+  }))
+
+  const stats: LiveStatDto = {
+    matchId,
+    possessionHome: detail.stats[0]?.home ?? 50,
+    possessionAway: detail.stats[0]?.away ?? 50,
+    shotsHome: detail.stats[1]?.home ?? 0,
+    shotsAway: detail.stats[1]?.away ?? 0,
+    cornersHome: detail.stats[2]?.home ?? 0,
+    cornersAway: detail.stats[2]?.away ?? 0,
+    foulsHome: detail.stats[3]?.home ?? 0,
+    foulsAway: detail.stats[3]?.away ?? 0,
+    updatedAt: new Date().toISOString(),
+  }
+
+  return {
+    match: toMatchCardDto(detail, matchId),
+    events,
+    stats,
+    updatedAt: new Date().toISOString(),
+  }
+}
+
+export function generateStaticParams() {
+  return Object.keys(liveDetailById).map((matchId) => ({ matchId }))
+}
+
 export default async function MatchDetailPage({
   params,
 }: {
   params: Promise<{ matchId: string }>
 }) {
   const { matchId } = await params
-  const match = await publicApiClient<MatchCardDto>(`/matches/${matchId}`)
-  const liveDetail = await publicApiClient<LiveDetailResponse>(`/live/${matchId}`)
+  const detail = liveDetailById[matchId]
+
+  if (!detail) {
+    notFound()
+  }
+
+  const match = toMatchCardDto(detail, matchId)
+  const liveDetail = toLiveDetailResponse(detail, matchId)
 
   return (
     <div className="stack">

@@ -1,9 +1,32 @@
 import type { MatchCard as MatchCardDto } from '@predictor-ball/shared'
-import { publicApiClient } from '@/lib/api-client'
+import { scheduleSections } from '@/mocks/schedule'
 import { PublishForm } from '@/components/PublishForm'
 
-export default async function PublishPage() {
-  const matches = await publicApiClient<MatchCardDto[]>('/schedule?limit=50')
+function toMatchCardDtos(): MatchCardDto[] {
+  return scheduleSections.flatMap((section) =>
+    section.matches.map((match) => ({
+      id: match.id,
+      kickoffAt: new Date().toISOString(),
+      status: 'scheduled',
+      stage: match.stage,
+      homeTeam: {
+        id: `${match.id}-home`,
+        name: match.home.name,
+        shortName: match.home.name,
+      },
+      awayTeam: {
+        id: `${match.id}-away`,
+        name: match.away.name,
+        shortName: match.away.name,
+      },
+      homeScore: match.home.score ?? 0,
+      awayScore: match.away.score ?? 0,
+    })),
+  )
+}
+
+export default function PublishPage() {
+  const matches = toMatchCardDtos()
 
   return (
     <div className="stack">
