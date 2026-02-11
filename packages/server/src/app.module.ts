@@ -12,6 +12,10 @@ import { MatchesController } from './matches/matches.controller'
 import { LiveController } from './live/live.controller'
 import { FeedController } from './feed/feed.controller'
 import { ReportsController } from './reports/reports.controller'
+import { OrdersController } from './orders/orders.controller'
+import { PaymentsController } from './payments/payments.controller'
+import { MeController } from './me/me.controller'
+import { FollowsController } from './follows/follows.controller'
 import { AuthorsController } from './authors/authors.controller'
 import { InsightsController } from './insights/insights.controller'
 import { MockAuthGuard } from './auth/mock-auth.guard'
@@ -69,6 +73,10 @@ import { FollowEntity, FollowSchema } from './storage/schemas/follow.schema'
     LiveController,
     FeedController,
     ReportsController,
+    OrdersController,
+    PaymentsController,
+    MeController,
+    FollowsController,
     AuthorsController,
     InsightsController,
   ],
